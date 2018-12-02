@@ -1184,6 +1184,27 @@ func RenderBody(body Component) {
 	}
 }
 
+func RenderInto(selector string, comp Component) {
+	RenderIntoNode(js.Global.Get("document").Call("querySelector", selector), comp)
+}
+
+func RenderIntoNode(node *js.Object, comp Component) {
+	nextRender, skip, pendingMounts := renderComponent(comp, nil)
+
+	if skip {
+		panic("vecty: RenderBody Component.SkipRender illegally returned true")
+	}
+
+	targetNode := wrapObject(node)
+
+	replaceNode(nextRender.node, targetNode)
+	mount(pendingMounts...)
+
+	if m, ok := comp.(Mounter); ok {
+		mount(m)
+	}
+}
+
 // SetTitle sets the title of the document.
 func SetTitle(title string) {
 	global.Get("document").Set("title", title)
