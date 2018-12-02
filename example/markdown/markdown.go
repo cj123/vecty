@@ -1,9 +1,9 @@
 package main
 
 import (
-	"github.com/gopherjs/vecty"
-	"github.com/gopherjs/vecty/elem"
-	"github.com/gopherjs/vecty/event"
+	"github.com/cj123/vecty"
+	"github.com/cj123/vecty/elem"
+	"github.com/cj123/vecty/event"
 	"github.com/microcosm-cc/bluemonday"
 	"github.com/russross/blackfriday"
 )

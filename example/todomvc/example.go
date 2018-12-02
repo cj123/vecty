@@ -4,12 +4,12 @@ import (
 	"encoding/json"
 
 	"github.com/gopherjs/gopherjs/js"
-	"github.com/gopherjs/vecty"
-	"github.com/gopherjs/vecty/example/todomvc/actions"
-	"github.com/gopherjs/vecty/example/todomvc/components"
-	"github.com/gopherjs/vecty/example/todomvc/dispatcher"
-	"github.com/gopherjs/vecty/example/todomvc/store"
-	"github.com/gopherjs/vecty/example/todomvc/store/model"
+	"github.com/cj123/vecty"
+	"github.com/cj123/vecty/example/todomvc/actions"
+	"github.com/cj123/vecty/example/todomvc/components"
+	"github.com/cj123/vecty/example/todomvc/dispatcher"
+	"github.com/cj123/vecty/example/todomvc/store"
+	"github.com/cj123/vecty/example/todomvc/store/model"
 )
 
 func main() {
