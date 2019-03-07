@@ -802,6 +802,7 @@ func Rerender(c Component) {
 	if c.Context().unmounted {
 		return
 	}
+
 	batch.add(c)
 }
 
@@ -818,7 +819,7 @@ type batchRenderer struct {
 
 // add a Component to the pending batch.
 func (b *batchRenderer) add(c Component) {
-	if i, ok := b.idx[c]; ok {
+	if i, ok := b.idx[c]; ok && i+1 < len(b.batch) {
 		// Shift idx for delete.
 		for j, c := range b.batch[i+1:] {
 			b.idx[c] = i + j
