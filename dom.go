@@ -819,14 +819,17 @@ type batchRenderer struct {
 
 // add a Component to the pending batch.
 func (b *batchRenderer) add(c Component) {
-	if i, ok := b.idx[c]; ok && i+1 < len(b.batch) {
-		// Shift idx for delete.
-		for j, c := range b.batch[i+1:] {
-			b.idx[c] = i + j
+	if i, ok := b.idx[c]; ok {
+		if i+1 < len(b.batch) {
+			// Shift idx for delete.
+			for j, c := range b.batch[i+1:] {
+				b.idx[c] = i + j
+			}
+			// Delete previously queued render.
+			copy(b.batch[i:], b.batch[i+1:])
+			b.batch[len(b.batch)-1] = nil
 		}
-		// Delete previously queued render.
-		copy(b.batch[i:], b.batch[i+1:])
-		b.batch[len(b.batch)-1] = nil
+
 		b.batch = b.batch[:len(b.batch)-1]
 	}
 	// Append and index component.
